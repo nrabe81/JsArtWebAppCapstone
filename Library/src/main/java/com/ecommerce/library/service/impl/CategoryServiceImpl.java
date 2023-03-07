@@ -82,4 +82,9 @@ public class CategoryServiceImpl implements CategoryService
         category.set_activated(true);
         repo.save(category);
     }
+
+    @Override
+    public List<Category> findAllByActivated() {
+        return repo.findAllByActivated();
+    }
 }
