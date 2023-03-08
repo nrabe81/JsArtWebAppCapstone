@@ -34,17 +34,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product save(MultipartFile imageProduct, ProductDto productDto) {
+    public Product save(MultipartFile imageProduct, ProductDto productDto)
+    {
         try {
             Product product = new Product();
-            if(imageProduct == null){
+
+            if(imageProduct == null)
+            {
                 product.setImage(null);
-            }else{
-                if(imageUpload.uploadImage(imageProduct)){
-                    System.out.println("Upload successfully");
+            }
+            else
+            {
+                if(imageUpload.uploadImage(imageProduct))
+                {
+                    System.out.println("Uploaded successfully");
                 }
                 product.setImage(Base64.getEncoder().encodeToString(imageProduct.getBytes()));
             }
+
             product.setName(productDto.getName());
             product.setDescription(productDto.getDescription());
             product.setCategory(productDto.getCategory());
@@ -53,25 +60,34 @@ public class ProductServiceImpl implements ProductService {
             product.set_activated(true);
             product.set_deleted(false);
             return productRepository.save(product);
-        }catch (Exception e){
-            e.printStackTrace();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
             return null;
         }
 
     }
 
+    //Used to update an already saved product
     @Override
     public Product update(MultipartFile imageProduct ,ProductDto productDto) {
         try {
             Product product = productRepository.getById(productDto.getId());
-            if(imageProduct == null){
+
+            if(imageProduct == null)
+            {
                 product.setImage(product.getImage());
-            }else{
-                if(imageUpload.checkExisted(imageProduct) == false){
+            }
+            else
+            {
+                if(!imageUpload.checkExisted(imageProduct))
+                {
                     imageUpload.uploadImage(imageProduct);
                 }
                 product.setImage(Base64.getEncoder().encodeToString(imageProduct.getBytes()));
             }
+
             product.setName(productDto.getName());
             product.setDescription(productDto.getDescription());
             product.setSalePrice(productDto.getSalePrice());
@@ -79,15 +95,19 @@ public class ProductServiceImpl implements ProductService {
             product.setCurrentQuantity(productDto.getCurrentQuantity());
             product.setCategory(productDto.getCategory());
             return productRepository.save(product);
-        }catch (Exception e){
-            e.printStackTrace();
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
             return null;
         }
 
     }
 
     @Override
-    public void deleteById(Long id) {
+    //used to disable the product in the database
+    public void deleteById(Long id)
+    {
         Product product = productRepository.getById(id);
         product.set_deleted(true);
         product.set_activated(false);
@@ -95,7 +115,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void enableById(Long id) {
+    //used to enable to the product in the database
+    public void enableById(Long id)
+    {
         Product product = productRepository.getById(id);
         product.set_activated(true);
         product.set_deleted(false);
@@ -103,7 +125,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto getById(Long id) {
+    public ProductDto getById(Long id)
+    {
         Product product = productRepository.getById(id);
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
@@ -120,7 +143,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDto> pageProducts(int pageNo) {
+    public Page<ProductDto> pageProducts(int pageNo)
+    {
         Pageable pageable = PageRequest.of(pageNo, 5);
         List<ProductDto> products = transfer(productRepository.findAll());
         Page<ProductDto> productPages = toPage(products, pageable);
@@ -128,7 +152,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDto> searchProducts(int pageNo, String keyword) {
+    public Page<ProductDto> searchProducts(int pageNo, String keyword)
+    {
         Pageable pageable = PageRequest.of(pageNo, 5);
         List<ProductDto> productDtoList = transfer(productRepository.searchProductsList(keyword));
         Page<ProductDto> products = toPage(productDtoList, pageable);
@@ -137,8 +162,10 @@ public class ProductServiceImpl implements ProductService {
 
 
 
-    private Page toPage(List<ProductDto> list , Pageable pageable){
-        if(pageable.getOffset() >= list.size()){
+    private Page toPage(List<ProductDto> list , Pageable pageable)
+    {
+        if(pageable.getOffset() >= list.size())
+        {
             return Page.empty();
         }
         int startIndex = (int) pageable.getOffset();
@@ -150,7 +177,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    private List<ProductDto> transfer(List<Product> products){
+    private List<ProductDto> transfer(List<Product> products)
+    {
         List<ProductDto> productDtoList = new ArrayList<>();
         for(Product product : products){
             ProductDto productDto = new ProductDto();
@@ -173,37 +201,44 @@ public class ProductServiceImpl implements ProductService {
     /*Customer*/
 
     @Override
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts()
+    {
         return productRepository.getAllProducts();
     }
 
     @Override
-    public List<Product> listViewProducts() {
+    public List<Product> listViewProducts()
+    {
         return productRepository.listViewProducts();
     }
 
     @Override
-    public Product getProductById(Long id) {
+    public Product getProductById(Long id)
+    {
         return productRepository.getById(id);
     }
 
     @Override
-    public List<Product> getRelatedProducts(Long categoryId) {
+    public List<Product> getRelatedProducts(Long categoryId)
+    {
         return productRepository.getRelatedProducts(categoryId);
     }
 
     @Override
-    public List<Product> getProductsInCategory(Long categoryId) {
+    public List<Product> getProductsInCategory(Long categoryId)
+    {
         return productRepository.getProductsInCategory(categoryId);
     }
 
     @Override
-    public List<Product> filterHighPrice() {
+    public List<Product> filterHighPrice()
+    {
         return productRepository.filterHighPrice();
     }
 
     @Override
-    public List<Product> filterLowPrice() {
+    public List<Product> filterLowPrice()
+    {
         return productRepository.filterLowPrice();
     }
 

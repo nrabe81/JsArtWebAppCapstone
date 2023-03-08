@@ -13,17 +13,21 @@ public class ImageUpload
 {
     private final String UPLOAD_FOLDER = "C:\\Users\\nrabe\\Documents\\Per Scholas\\JsArt2\\Admin\\src\\main\\resources\\static\\img\\image-product";
 
-    public boolean uploadImage(MultipartFile imageProduct){
+    public boolean uploadImage(MultipartFile imageProduct)
+    {
         boolean isUpload = false;
+
         try {
             Files.copy(imageProduct.getInputStream(),
                     Paths.get(UPLOAD_FOLDER + File.separator, imageProduct.getOriginalFilename()),
                     StandardCopyOption.REPLACE_EXISTING);
             isUpload = true;
-
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
+
         return isUpload;
     }
 

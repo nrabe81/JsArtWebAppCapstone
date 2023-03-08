@@ -4,6 +4,8 @@ package com.ecommerce.admin.controller;
 import com.ecommerce.library.dto.AdminDto;
 import com.ecommerce.library.model.Admin;
 import com.ecommerce.library.service.impl.AdminServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ import javax.validation.Valid;
 @Controller
 public class LoginController
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -92,6 +96,7 @@ public class LoginController
             {
                 model.addAttribute("adminDto", adminDto);
                 model.addAttribute("emailError", "Your email has already been registered");
+                LOGGER.error("Your email has already been registered");
                 System.out.println("Admin not null");
                 return "register";
             }
@@ -104,12 +109,14 @@ public class LoginController
                 model.addAttribute("adminDto", adminDto);
                 model.addAttribute("success", "Registered successfully");
                 System.out.println("successfully saved password");
+                LOGGER.info("successfully saved password");
             }
             else
             {
                 model.addAttribute("adminDto", adminDto);
                 model.addAttribute("passwordError", "Passwords do not match");
                 System.out.println("Password not same");
+                LOGGER.error("Password not same");
                 return "register";
             }
 
@@ -118,6 +125,7 @@ public class LoginController
         {
             System.out.println(ex.getMessage());
             model.addAttribute("errors", "Error. Please Try Again");
+            LOGGER.error("Error. Please Try Again");
         }
 
         return "register";

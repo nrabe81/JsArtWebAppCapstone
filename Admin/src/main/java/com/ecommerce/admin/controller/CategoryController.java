@@ -2,6 +2,8 @@ package com.ecommerce.admin.controller;
 
 import com.ecommerce.library.model.Category;
 import com.ecommerce.library.service.CategoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -10,12 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+
 
 @Controller
 public class CategoryController
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+
     @Autowired
     private CategoryService categoryService;
 
@@ -24,6 +28,7 @@ public class CategoryController
     {
         if(principal == null)
         {
+            LOGGER.warn("Return to Login");
             return "redirect:/login";
         }
         List<Category> categories = categoryService.findAll();
@@ -40,16 +45,19 @@ public class CategoryController
         try {
             categoryService.save(category);
             attributes.addFlashAttribute("success", "Added successfully");
+            LOGGER.info("Added successfully");
         }
         catch (DataIntegrityViolationException ex)
         {
             ex.printStackTrace();
             attributes.addFlashAttribute("failed", "Duplicate Name");
+            LOGGER.error("Duplicate Name");
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed. Try Again");
+            LOGGER.error("Failed. Try Again");
         }
         return "redirect:/categories";
     }
@@ -69,16 +77,19 @@ public class CategoryController
         try {
             categoryService.update(category);
             attributes.addFlashAttribute("success", "Updated Successfully");
+            LOGGER.info("Updated Successfully");
         }
         catch (DataIntegrityViolationException ex)
         {
             ex.printStackTrace();
             attributes.addFlashAttribute("failed", "Duplicate Name");
+            LOGGER.error("Duplicate Name");
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to Update, Server Error");
+            LOGGER.error("Failed to Update, Server Error");
         }
 
         return "redirect:/categories";
@@ -90,11 +101,13 @@ public class CategoryController
         try {
             categoryService.deleteById(id);
             attributes.addFlashAttribute("success", "Disabled Successfully");
+            LOGGER.info("Disabled Successfully");
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to Delete");
+            LOGGER.error("Failed to Delete");
         }
         return "redirect:/categories";
     }
@@ -105,11 +118,13 @@ public class CategoryController
         try {
             categoryService.enableById(id);
             attributes.addFlashAttribute("success", "Enabled Successfully");
+            LOGGER.info("Enabled Successfully");
         }
         catch (Exception ex)
         {
             ex.printStackTrace();
             attributes.addFlashAttribute("failed", "Failed to Enable");
+            LOGGER.error("Failed to Enable");
         }
         return "redirect:/categories";
     }

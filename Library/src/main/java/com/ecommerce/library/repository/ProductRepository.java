@@ -19,6 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.description like %?1% or p.name like %?1%")
     Page<Product> searchProducts(String keyword, Pageable pageable);
 
+    //match any string that contains a character in the second position that matches the specified parameter value
     @Query("select p from Product p where p.description like %?1% or p.name like %?1%")
     List<Product> searchProductsList(String keyword);
 
