@@ -1,0 +1,25 @@
+2023-03-09 12:11:56.762  INFO 18780 --- [main] c.e.admin.CategoryServiceImplTest        : Starting CategoryServiceImplTest using Java 11.0.17 on Ryzen7-2700-Desktop with PID 18780 (started by nrabe in C:\Users\nrabe\Documents\Per Scholas\JsArt2\Admin)
+2023-03-09 12:11:56.765  INFO 18780 --- [main] c.e.admin.CategoryServiceImplTest        : No active profile set, falling back to 1 default profile: "default"
+2023-03-09 12:11:57.487  INFO 18780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-09 12:11:57.559  INFO 18780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 5 JPA repository interfaces.
+2023-03-09 12:11:58.176  INFO 18780 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-09 12:11:58.245  INFO 18780 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-03-09 12:11:58.438  INFO 18780 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-09 12:11:58.809  INFO 18780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-09 12:11:59.144  INFO 18780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-09 12:11:59.165  INFO 18780 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-09 12:12:00.202  INFO 18780 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-09 12:12:00.212  INFO 18780 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-09 12:12:01.278  WARN 18780 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-09 12:12:01.672  INFO 18780 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-09 12:12:02.214  WARN 18780 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 52b6cf60-5555-4afe-a246-f23c60b842a8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-03-09 12:12:02.511  INFO 18780 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5fb58f15, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f8ac459, org.springframework.security.web.context.SecurityContextPersistenceFilter@13f255ed, org.springframework.security.web.header.HeaderWriterFilter@650997b0, org.springframework.security.web.csrf.CsrfFilter@19240b9, org.springframework.security.web.authentication.logout.LogoutFilter@5924ea91, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@480fb706, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@21cb5648, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7d43c89f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5c438795, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30b0d5a7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31ecb361, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@149ef64a, org.springframework.security.web.session.SessionManagementFilter@66831b14, org.springframework.security.web.access.ExceptionTranslationFilter@30b0f674, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@22c14d10]
+2023-03-09 12:12:02.607  INFO 18780 --- [main] c.e.admin.CategoryServiceImplTest        : Started CategoryServiceImplTest in 6.249 seconds (JVM running for 7.384)
+2023-03-09 12:12:02.808  INFO 18780 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-09 12:12:02.812  INFO 18780 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-09 12:12:02.826  INFO 18780 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
