@@ -21,6 +21,6 @@ public interface CategoryService
 
     List<Category> findAllByActivated();
 
-    /*Customer*/
+    //Customer-------------------------------------
     List<CategoryDto> getCategoryAndProduct();
 }

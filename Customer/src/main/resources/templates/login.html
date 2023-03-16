@@ -25,40 +25,42 @@
 					</div>
 				</div>
 			</div>
+
+
+				<div class="container">
+					<div style="align-items:center;">
+						<h2>Log In</h2>
+						<div th:if = "${param.error}" class="text-center alert alert-warning">
+							<p>Invalid username or password</p>
+						</div>
+
+						<div th:if = "${param.logout}" class="text-center alert alert-success">
+							<p>You have been logged out</p>
+						</div>
+
+						<form th:action="@{/do-login}" method="post">
+							<div class="search-wrap">
+								<!-- <span>User name</span> -->
+								<input type="text" placeholder="Email" name="username">
+							</div>
+							<div class="search-wrap">
+								<!-- <span>Password</span> -->
+								<input type="password" placeholder="Password" name="password" style="margin-top:10px;">
+							</div>
+							<div class="search-wrap">
+								<input type="submit" value="Log In" style="margin-top:10px;">
+							</div>
+							<div class="search-wrap">
+								<p>Don't Have An Account? <a th:href="@{/register}">Sign up now </a></p>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
 		</div>
 
-		<section style="align-items:center; justify-content:center; margin-left: auto; margin-right: auto;">
-			<div style="align-items:center; justify-content:center; margin-left: auto; margin-right: auto;">
-				<div style="align-items:center;">
-					<h2>Log In</h2>
-					<div th:if = "${param.error}" class="text-center alert alert-warning">
-						<p>Invalid username or password</p>
-					</div>
 
-					<div th:if = "${param.logout}" class="text-center alert alert-success">
-						<p>You have been logged out</p>
-					</div>
-
-					<form th:action="@{/do-login}" method="post">
-						<div class="search-wrap">
-							<!-- <span>User name</span> -->
-							<input type="text" placeholder="Name" name="username" style="align-items:center; justify-content:center; margin-left: auto; margin-right: auto;">
-						</div>
-						<div class="search-wrap">
-							<!-- <span>Password</span> -->
-							<input type="password" placeholder="Password" name="password">
-						</div>
-						<div class="search-wrap">
-							<input type="submit" value="Log In">
-						</div>
-						<div class="search-wrap">
-							<p>Do You Already Have An Account ? <a th:href="@{/register}">Sign up now </a></p>
-						</div>
-					</form>
-				</div>
-			</div>
-
-		</section>
 
 		<!--Footer Start-->
 		<footer th:replace = "fragments :: footer">

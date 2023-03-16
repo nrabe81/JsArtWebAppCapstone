@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace = "fragments :: header">
+
+</head>
+
+<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+
+		<!--Navigation Start-->
+		<nav th:replace = "fragments :: navigation">
+		</nav>
+		<!--Navigation End-->
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Shop</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="breadcrumbs-two">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="breadcrumbs-img" style="background-image: url(images/Paintings.JPG);">
+							<h2>Paintings</h2>
+						</div>
+						<div class="menu text-center">
+							<p>
+								<a href="#">Sort By:</a>
+								<a href="#">Price</a>
+								<a href="#">Sale Items</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="colorlib-product">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+						<h2>View All Paintings</h2>
+					</div>
+				</div>
+
+				<div class="row row-pb-md">
+					<div class="col-md-3 col-lg-3 mb-4 text-center" th:each="product : ${products}"
+						 th:if="${product.category.name == 'Paintings'}">
+						<div class="product-entry border">
+							<a th:href="@{/find-product/{id} (id = ${product.id})}" class="prod-img">
+								<img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Free html5 bootstrap 4 template" style="max-height:220px;">
+							</a>
+							<div class="desc">
+								<h2>
+									<a th:href="@{/find-product/{id} (id = ${product.id})}" th:text="${product.name}"></a>
+								</h2>
+								<span class="price" th:text="'$' + ${product.costPrice}"></span>
+							</div>
+						</div>
+					</div>
+					<div class="w-100"></div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="block-27">
+						   <ul>
+							   <li><a href="#"><i class="ion-ios-arrow-back"></i></a></li>
+							  <li class="active"><span>1</span></li>
+							  <li><a href="#">2</a></li>
+							  <li><a href="#">3</a></li>
+							  <li><a href="#">4</a></li>
+							  <li><a href="#">5</a></li>
+							  <li><a href="#"><i class="ion-ios-arrow-forward"></i></a></li>
+						   </ul>
+		            	</div>
+						<div class="row" style="margin-top:25px;">
+							<div class="col-md-12 text-center">
+								<p><a th:href="@{/products}" class="btn btn-primary btn-lg">Shop All Products</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="colorlib-partner">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+						<h2>Trusted Partners</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col partner-col text-center">
+						<img src="images/brand-1.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-2.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-3.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-4.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+					<div class="col partner-col text-center">
+						<img src="images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--footer start-->
+		<footer th:replace = "fragments :: footer">
+		</footer>
+		<!--footer End-->
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+
+	<!--JavaScript Start-->
+	<div th:replace = "fragments :: script">
+	</div>
+	<!--JavaScript End-->
+
+</body>
+
+</html>
+
