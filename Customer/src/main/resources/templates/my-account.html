@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+	<head th:replace = "fragments :: header">
+
+	</head>
+
+
+	<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page" style="justify-content:center;">
+
+		<!--Navigation Start-->
+		<nav th:replace = "fragments :: navigation">
+		</nav>
+		<!--Navigation End-->
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a th:href="@{/index}">Home</a></span> / <span>My Account</span></p>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Start My Account  -->
+			<div class="container">
+				<div class="row my-2">
+					<div class="col-lg-8 order-lg-2">
+						<div class="tab-content py-4">
+							<div class="tab-pane active" id="profile">
+								<h1><b>Profile</b></h1>
+								<h2> <span style="font-size: medium;"></span></h2>
+								<h4>Email: </h4>
+								<h4>Phone: </h4>
+								<h4></h4>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="my-account-box-main">
+				<div class="container">
+					<div class="my-account-page">
+						<div class="row">
+							<div class="col-lg-4 col-md-12">
+								<div class="account-box">
+									<div class="service-box">
+										<ion-icon name="cart-outline" style="height:40px; width:40px">
+											<a href="#"> <i class="fa fa-gift"></i> </a>
+										</ion-icon>
+										<div class="service-desc">
+											<h4>Your Orders</h4>
+											<p>Track, return, or buy things again</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-12">
+								<div class="account-box">
+									<div class="service-box">
+										<ion-icon name="finger-print-outline" style="height:40px; width:40px">
+											<a href="#"><i class="fa fa-lock"></i> </a>
+										</ion-icon>
+										<div class="service-desc">
+											<h4>Login &amp; security</h4>
+											<p>Edit login, name, and mobile number</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-12">
+								<div class="account-box">
+									<div class="service-box">
+										<ion-icon name="location-outline" style="height:40px; width:40px">
+											<a href="#"> <i class="fa fa-location-arrow"></i> </a>
+										</ion-icon>
+										<div class="service-desc">
+											<h4>Your Addresses</h4>
+											<p>Edit addresses for orders and gifts</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End My Account -->
+
+
+
+		</div>
+
+
+
+		<!--Footer Start-->
+		<footer th:replace = "fragments :: footer">
+		</footer>
+		<!--Footer End-->
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+
+	<!--JavaScript Start-->
+	<div th:replace = "fragments :: script">
+	</div>
+	<!--JavaScript End-->
+
+	</body>
+</html>
+

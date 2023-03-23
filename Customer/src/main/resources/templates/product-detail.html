@@ -20,72 +20,78 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<p class="bread"><span><a href="index.html">Home</a></span> / <span>Product Details</span></p>
+					<p class="bread"><span><a th:href="@{/index}">Home</a></span> / <span>Product Details</span></p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	<form th:action="@{/add-to-cart}" method="post">
 	<div class="colorlib-product">
 		<div class="container">
 			<div class="row row-pb-lg product-detail-wrap">
-				<div class="col-sm-8">
-					<div class="owl-carousel">
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
+
+					<div class="col-sm-8">
+						<div class="owl-carousel">
+							<div class="item">
+								<div class="product-entry border">
+									<a href="#" class="prod-img">
+										<img th:src="@{'data:image/jpeg;base64,' + ${product.image}}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+									</a>
+								</div>
 							</div>
-						</div>
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
+							<div class="item">
+								<div class="product-entry border">
+									<a href="#" class="prod-img">
+										<img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+									</a>
+								</div>
 							</div>
-						</div>
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
+							<div class="item">
+								<div class="product-entry border">
+									<a href="#" class="prod-img">
+										<img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+									</a>
+								</div>
 							</div>
-						</div>
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="product-desc">
-						<h2 th:text="${product.name}"></h2>
-						<h2 class="price" th:text="'$' + ${product.costPrice}"></h2>
-						<div class="input-group mb-4">
-                     	<span class="input-group-btn">
-                        	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-							   <i class="icon-minus2"></i>
-									</button>
-										</span>
-											<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-										<span class="input-group-btn ml-1">
-									<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-								 <i class="icon-plus2"></i>
-                         	</button>
-                     	</span>
-						</div>
-						<div class="row">
-							<div class="col-sm-12 text-center">
-								<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+							<div class="item">
+								<div class="product-entry border">
+									<a href="#" class="prod-img">
+										<img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<div class="col-sm-4">
+
+						<div class="product-desc">
+							<input type="hidden" th:value="${product.id}" name="id">
+							<h2 th:text="${product.name}"></h2>
+							<h2 class="price" th:text="'$' + ${product.costPrice}"></h2>
+							<div class="input-group mb-4">
+							<span class="input-group-btn">
+								<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+								   <i class="icon-minus2"></i>
+										</button>
+											</span>
+												<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+											<span class="input-group-btn ml-1">
+										<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+									 <i class="icon-plus2"></i>
+								</button>
+							</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-12 text-center">
+									<input type="submit" class="btn btn-primary btn-lg" th:href="@{/cart}" value="Add to Cart">
+<!--									<input type="submit" class="addtocart"><a th:href="@{/cart}" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i>Add to Cart</a></input>-->
+								</div>
+							</div>
+						</div>
+
+					</div>
+
 			</div>
 
 			<div class="row">
@@ -259,7 +265,7 @@
 			</div>
 		</div>
 	</div>
-
+	</form>
 	<div class="colorlib-product">
 		<div class="container">
 			<div class="row">

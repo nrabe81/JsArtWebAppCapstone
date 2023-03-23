@@ -40,9 +40,9 @@ public class HomeController {
             List<ProductDto> productDtos = productService.findAll();
             model.addAttribute("categories", categories);
             model.addAttribute("products", productDtos);
-//            Customer customer = customerService.findByUsername(principal.getName());
-//            ShoppingCart cart = customer.getShoppingCart();
-//            session.setAttribute("totalItems", cart.getTotalItems());
+            Customer customer = customerService.findByUsername(principal.getName());
+            ShoppingCart cart = customer.getShoppingCart();
+            session.setAttribute("totalItems", cart.getTotalItems());
         }
         else
         {
