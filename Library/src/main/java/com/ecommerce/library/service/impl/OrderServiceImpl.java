@@ -64,4 +64,19 @@ public class OrderServiceImpl implements OrderService
         cartRepository.save(cart);
         orderRepository.save(order);
     }
+
+    @Override
+    public void acceptOrder(Long id)
+    {
+        Order order = orderRepository.getReferenceById(id);
+        order.setDeliveryDate(new Date());
+        order.setOrderStatus("SHIPPED");
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void cancelOrder(Long id)
+    {
+
+    }
 }

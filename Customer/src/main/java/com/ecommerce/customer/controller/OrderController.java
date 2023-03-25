@@ -1,5 +1,6 @@
 package com.ecommerce.customer.controller;
 
+import com.ecommerce.library.model.ChargeRequest;
 import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.model.Order;
 import com.ecommerce.library.model.ShoppingCart;
@@ -21,6 +22,10 @@ public class OrderController
 
     @Autowired
     private OrderService orderService;
+
+    //Stripe Test public key
+//    @Value("${pk_test_51MovtkBwzfKoO9qzUOj62X5Oz8l8XpQzmlUh2tsMN23HrHjr1iC18qK47lMj0xdLQgsBafmrQnNSztfOZ8VxWz9200uCBbaItK}")
+    private String stripePublicKey = "pk_test_51MovtkBwzfKoO9qzUOj62X5Oz8l8XpQzmlUh2tsMN23HrHjr1iC18qK47lMj0xdLQgsBafmrQnNSztfOZ8VxWz9200uCBbaItK";
 
 
     @GetMapping("/check-out")
@@ -46,6 +51,9 @@ public class OrderController
             model.addAttribute("customer", customer);
             ShoppingCart cart = customer.getShoppingCart();
             model.addAttribute("cart", cart);
+            model.addAttribute("amount", Integer.valueOf((int) ((cart.getTotalPrices() * 100) + (cart.getTotalPrices() * 100 * 0.085)))); // in cents
+            model.addAttribute("stripePublicKey", stripePublicKey);
+            model.addAttribute("currency", ChargeRequest.Currency.USD);
         }
 
         return "checkout";
@@ -86,5 +94,24 @@ public class OrderController
 
         return "redirect:/order";
     }
+
+    @GetMapping("/past-orders")
+    public String pastOrders(Principal principal, Model model)
+    {
+        if(principal == null)
+        {
+            return "redirect:/login";
+        }
+
+        String username = principal.getName();
+        Customer customer = customerService.findByUsername(username);
+
+        List<Order> orderList = customer.getOrders();
+        model.addAttribute("orders", orderList);
+
+        return "past-orders";
+    }
+
+
 
 }

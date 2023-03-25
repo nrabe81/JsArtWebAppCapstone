@@ -76,15 +76,13 @@
                             <li class="has-dropdown">
                                 <a>Account</a>
                                 <ul class="dropdown">
-                                    <li><a th:text="${session.username != null} ? ${session.username} : ''"></a></li>
                                     <li th:if="${session.username == null}"><a th:href="@{/login}">Log In</a></li>
                                     <li th:if="${session.username == null}"><a th:href="@{/register}">Register</a></li>
                                     <li th:if="${session.username != null}"><a th:href="@{/cart}">Shopping Cart</a></li>
-                                    <li th:if="${session.username != null}"><a href="checkout.html">Checkout</a></li>
-                                    <li th:if="${session.username != null}"><a href="order-complete.html">Order Status</a></li>
-                                    <li th:if="${session.username != null}"><a href="add-to-wishlist.html">Wishlist</a></li>
-                                    <li th:if="${session.username != null}"><a th:href="@{/account}">My Account</a></li>
+                                    <li th:if="${session.username != null}"><a th:href="@{/past-orders}">Past Orders</a></li>
+                                    <li th:if="${session.username != null}"><a th:href="@{/my-account}">My Account</a></li>
                                     <li th:if="${session.username != null}"><a th:href="@{/logout}">Log Out</a></li>
+                                    <li><a th:text="${session.username != null} ? ${session.username} : ''"></a></li>
                                 </ul>
                             </li>
 

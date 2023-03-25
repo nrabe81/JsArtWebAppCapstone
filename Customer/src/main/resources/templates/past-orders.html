@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace = "fragments :: header">
+
+</head>
+
+<body>
+		
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<!--Navigation Start-->
+		<nav th:replace = "fragments :: navigation">
+		</nav>
+		<!--Navigation End-->
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a th:href="@{/index}">Home</a></span> / <span>Past Orders</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<table class="table">
+			<thead>
+			<tr>
+				<th scope="col">Order Date</th>
+				<th scope="col">Delivery Date</th>
+				<th scope="col">Order Status</th>
+				<th scope="col">Total Price</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="order : ${orders}">
+				<th scope="row">
+					<span><b th:text="${order.orderDate}"></b></span>
+				</th>
+				<td>
+					<p th:text="${order.deliveryDate}"></p>
+				</td>
+				<td>
+					<p th:text="${order.orderStatus}"></p>
+				</td>
+				<td>
+					<p th:text="'$' + ${#numbers.formatDecimal(order.totalPrice*0.085+order.totalPrice, 0, 'COMMA', 2, 'POINT')}"></p>
+				</td>
+				<td  th:if="${order.orderStatus == 'PENDING'}">
+					<button class="btn btn-primary">Cancel</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
+
+		<!--Footer Start-->
+		<footer th:replace = "fragments :: footer">
+		</footer>
+		<!--Footer End-->
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+	</div>
+
+	<!--JavaScript Start-->
+	<div th:replace = "fragments :: script">
+	</div>
+	<!--JavaScript End-->
+
+</body>
+
+</html>
+

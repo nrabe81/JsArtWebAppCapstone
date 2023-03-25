@@ -48,33 +48,34 @@
 				</div>
 
 				<!--Start Card Information-->
-				<div class="row">
-					<div class="col-lg-8">
-						<form method="post" class="colorlib-form" th:object="${cart}">
-							<h2>Card Details</h2>
-		              	<div class="row">
+<!--				<div class="row">-->
+<!--					<div class="col-lg-8">-->
+<!--						<form method="post" class="colorlib-form" th:object="${cart}">-->
+<!--							<h2>Card Details</h2>-->
+<!--		              	<div class="row">-->
 
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="nameOnCard">Name on card</label>
-									<input type="text" id="nameOnCard" class="form-control" placeholder="Name on Card">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="cardNumber">Card Number</label>
-									<input type="text" id="cardNumber" class="form-control" placeholder="Card Number">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="cvv">CVV</label>
-									<input type="text" id="cvv" class="form-control">
-								</div>
-							</div>
-					    </div>
-		            	</form>
-					</div>
+<!--							<div class="col-md-6">-->
+<!--								<div class="form-group">-->
+<!--									<label for="nameOnCard">Name on card</label>-->
+<!--									<input type="text" id="nameOnCard" class="form-control" placeholder="Name on Card">-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							<div class="col-md-6">-->
+<!--								<div class="form-group">-->
+<!--									<label for="cardNumber">Card Number</label>-->
+<!--									<input type="text" id="cardNumber" class="form-control" placeholder="Card Number">-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							<div class="col-md-6">-->
+<!--								<div class="form-group">-->
+<!--									<label for="cvv">CVV</label>-->
+<!--									<input type="text" id="cvv" class="form-control">-->
+<!--								</div>-->
+<!--							</div>-->
+<!--					    </div>-->
+<!--		            	</form>-->
+<!--					</div>-->
+
 					<!--End Card Information-->
 
 					<!--Start Cart Info-->
@@ -221,7 +222,20 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<p><a th:href="@{/save-order}" class="btn btn-primary">Place Order</a></p>
+								<form th:action='@{/charge}' method='POST' id='checkout-form'>
+									<input type='hidden' th:value='${amount}' name='amount' />
+									<!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+									<script
+											src='https://checkout.stripe.com/checkout.js'
+											class='stripe-button'
+											th:attr='data-key=${stripePublicKey}, data-amount=${amount}, data-currency=${currency}'
+											data-name='Checkout'
+											data-description='Process Payment'
+											data-image='https://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
+											data-locale='auto'
+											data-zip-code='false'>
+									</script>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -248,6 +262,7 @@
 	</div>
 	<!--JavaScript End-->
 
+	</div>
 </body>
 
 </html>

@@ -49,4 +49,19 @@ public class AccountController
 
         return "redirect:/account";
     }
+
+    @GetMapping("/my-account")
+    public String myAccount(Model model , Principal principal)
+    {
+        if(principal == null)
+        {
+            return "redirect:/login";
+        }
+
+        String username = principal.getName();
+        Customer customer = customerService.findByUsername(username);
+        model.addAttribute("customer", customer);
+
+        return "my-account";
+    }
 }
